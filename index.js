@@ -9,7 +9,7 @@ app.use(cors());
 
 app.get("/api/clima", async (req, res) => {
   const ciudad = req.query.ciudad;
-  const apiKey = "2afb928f1ab573a6ffda0ac21ec7b16a"; // Reemplazada con tu API
+  const apiKey = "2afb928f1ab573a6ffda0ac21ec7b16a";
 
   if (!ciudad) {
     return res.status(400).json({ error: "Parámetro 'ciudad' requerido" });
@@ -51,6 +51,11 @@ app.get("/api/clima", async (req, res) => {
     console.error(error);
     res.status(500).json({ error: "No se pudo obtener el clima" });
   }
+});
+
+// ✅ Ruta raíz requerida por Render
+app.get("/", (req, res) => {
+  res.send("API de clima funcionando correctamente.");
 });
 
 app.listen(PORT, '0.0.0.0', () => {
